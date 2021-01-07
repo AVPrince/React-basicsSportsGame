@@ -3,23 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>React Basic Sports Game</title>
+    <title>React Sports Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="root"></div>
         <!--React-->
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js" ></script>
-<!--React Dom-->
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" ></script>
-<!--Babel-->
-<script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js" ></script>
+    <!--React Dom-->
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" ></script>
+    <!--Babel-->
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
-<script type="text/babel">
+    <!-- include our JS+JSX for the React Appliccation -->
+    <script type="text/babel">
+        // An App component under which all other components will be added
+        function App (props){
+            // class Team1 extends React.Component {
+            //     constructor(props){
+            //         super(props);
+            //         this.state = {
+            //             count: 0,
+            //         };
+            //     }
+            // }
+            return (
+                <div className="App">
+                    <h1>Welcome to the Sports Game!</h1>
+                    <img src={props.logo} alt="logo" />
+                    <h2>Ready {props.name}!</h2>
+                </div>
+            )
+        }
 
-    let element = <Counter />
+        let element = 
+            <div>
+                <App 
+                    logo = "https://secure.webtoolhub.com/static/resources/icons/set1/a947bd4c20d1.png"
+                    name = "Player 1"
+                />
+            </div>
 
-    ReactDOM.render(element, document.getElementById('root'));
+    // Render the App
+    ReactDOM.render(
+        element, 
+        document.getElementById('root')
+    );
 </script>
 
 </body>
