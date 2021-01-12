@@ -50,9 +50,15 @@
             }
 
             render(){
-                let shotPercentage=''
+                let shotPercentageDiv
+
                 if (this.state.shots){
-                shotPercentage = this.state.score / this.state.shots
+                    let shotPercentage = Math.round((this.state.score / this.state.shots)*100)
+                    shotPercentageDiv = (
+                        <div>
+                            <strong>Shooting %: {shotPercentage}</strong>
+                        </div>
+                    )
                 }
                 return (
                     <div className="Team">
@@ -70,36 +76,69 @@
                             <strong>Score:</strong> {this.state.score}
                         </div>
 
-                        <div>
-                            <strong> {shotPercentage} Shooting %</strong>
-                        </div>
+                        {shotPercentageDiv}
 
                         <button onClick={this.shotHandler}>Shoot!</button>
                     </div>
                 )
             }
         }
-        function App (props){
+
+        function Game (props){
             return (
                 <div className="App">
+                    <h1>Welcome to {props.venue}</h1>
                     <div className="stats">
                         <Team
-                        name="Minnesota Timberwolves" 
-                        logo="https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/min.png" 
+                        name={props.visitingTeam.name}
+                        logo={props.visitingTeam.logoSrc} 
                         />
                         <div className="versus">
                             <h1>VS</h1>
                         </div>
                         <Team
-                        name="Golden State Warriors" 
-                        logo="https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/gsw.png" 
+                        name={props.homeTeam.name} 
+                        logo={props.homeTeam.logoSrc} 
                         />
                     </div>
                 </div>
             )
         }
 
-        let element = <App />
+        function App(props){
+            let timberwolves = {
+                name: "Minnesota Timberwolves",
+                logoSrc: "https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/min.png"
+            }
+            let warriors = {
+                name: "Golden State Warriors", 
+                logoSrc: "https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/gsw.png"
+            }
+            let lakers = {
+                name: "Los Angeles Lakers",
+                logoSrc: "https://images.vexels.com/media/users/3/131275/isolated/preview/e21219b6ea62929a81fcc3de3d31baf1-los-angeles-lakers-logo-by-vexels.png"
+            }
+            let nets = {
+                name: "Brooklyn Nets",
+                logoSrc: "https://i.pinimg.com/originals/9f/66/d0/9f66d02922e70e996467a44c5700900d.png"
+            }
+            return(
+                <div className="App">
+                    <Game 
+                        venue="the Chase Center" 
+                        homeTeam={warriors}
+                        visitingTeam={timberwolves}
+                    />
+                    <Game 
+                        venue="the Staples Center"
+                        homeTeam={lakers} 
+                        visitingTeam={nets}
+                    />
+                </div>
+            )
+        }
+
+    let element = <App />
 
     // Render the App
     ReactDOM.render(
