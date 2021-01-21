@@ -23,11 +23,26 @@ img {
     justify-content: space-between;
 }
 
-.versus {
+.ScoreBoard {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    color: green;
+    background-color: black;
+}
+
+h3 {
+    display: flex;
+    color: orangered;
+    justify-content: center;
+    align-items: center;
+}
+
+.versus {
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    color: blue;
+    line-break:normal;
 }
 
 button {
